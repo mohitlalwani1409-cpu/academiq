@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AcademiQ — Your Academic Advisor</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+
+  <div class="page-bg">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon"><i class="ti ti-school"></i></div>
+        <span class="logo-text">AcademiQ</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <p class="nav-label">Topics</p>
+        <button class="nav-item active" onclick="setTopic('general')">
+          <i class="ti ti-message-circle"></i> General Advice
+        </button>
+        <button class="nav-item" onclick="setTopic('study')">
+          <i class="ti ti-clock"></i> Study Strategies
+        </button>
+        <button class="nav-item" onclick="setTopic('exams')">
+          <i class="ti ti-notes"></i> Exam Prep
+        </button>
+        <button class="nav-item" onclick="setTopic('career')">
+          <i class="ti ti-briefcase"></i> Career & Major
+        </button>
+        <button class="nav-item" onclick="setTopic('writing')">
+          <i class="ti ti-pencil"></i> Writing & Research
+        </button>
+        <button class="nav-item" onclick="setTopic('stress')">
+          <i class="ti ti-heart"></i> Stress & Wellbeing
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="new-chat-btn" onclick="newChat()">
+          <i class="ti ti-plus"></i> New Chat
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="chat-main">
+
+      <header class="chat-header">
+        <div class="header-left">
+          <div class="header-avatar"><i class="ti ti-school"></i></div>
+          <div>
+            <div class="header-title">AcademiQ</div>
+            <div class="header-sub" id="topic-label">General Academic Advisor</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <span class="status-dot"></span>
+          <span class="status-text">Online</span>
+        </div>
+      </header>
+
+      <div class="messages" id="messages">
+        <div class="welcome-block">
+          <div class="welcome-icon"><i class="ti ti-school"></i></div>
+          <h1 class="welcome-title">Hello, I'm AcademiQ</h1>
+          <p class="welcome-sub">Your personal academic advisor. Ask me anything about studying, exams, choosing a major, writing papers, or managing academic stress.</p>
+          <div class="suggestion-grid" id="suggestions">
+            <button class="suggestion-card" onclick="sendSuggestion('How do I build an effective study schedule?')">
+              <i class="ti ti-calendar"></i>
+              <span>Build a study schedule</span>
+            </button>
+            <button class="suggestion-card" onclick="sendSuggestion('What are the best techniques to prepare for exams?')">
+              <i class="ti ti-notes"></i>
+              <span>Exam preparation tips</span>
+            </button>
+            <button class="suggestion-card" onclick="sendSuggestion('How do I choose the right college major?')">
+              <i class="ti ti-compass"></i>
+              <span>Choosing a major</span>
+            </button>
+            <button class="suggestion-card" onclick="sendSuggestion('How do I write a strong research paper?')">
+              <i class="ti ti-file-text"></i>
+              <span>Research paper guide</span>
+            </button>
+            <button class="suggestion-card" onclick="sendSuggestion('What are the best note-taking methods for college?')">
+              <i class="ti ti-pencil"></i>
+              <span>Note-taking methods</span>
+            </button>
+            <button class="suggestion-card" onclick="sendSuggestion('How do I manage academic stress and burnout?')">
+              <i class="ti ti-heart"></i>
+              <span>Manage academic stress</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick chips -->
+      <div class="chips-bar" id="chips-bar">
+        <button class="chip" onclick="sendSuggestion('Give me a 7-day study plan for finals week.')">Finals week plan</button>
+        <button class="chip" onclick="sendSuggestion('How do I stay focused while studying?')">Stay focused</button>
+        <button class="chip" onclick="sendSuggestion('What GPA do I need for grad school?')">GPA for grad school</button>
+        <button class="chip" onclick="sendSuggestion('How do I cite sources in APA format?')">APA citations</button>
+        <button class="chip" onclick="sendSuggestion('Tips for group study sessions?')">Group study tips</button>
+      </div>
+
+      <!-- Input -->
+      <div class="input-bar">
+        <textarea
+          id="user-input"
+          placeholder="Ask anything academic…"
+          rows="1"
+          onkeydown="handleKey(event)"
+          oninput="autoResize(this)"
+        ></textarea>
+        <button class="send-btn" id="send-btn" onclick="handleSend()" aria-label="Send message">
+          <i class="ti ti-send"></i>
+        </button>
+      </div>
+      <p class="disclaimer">AcademiQ is powered by Claude AI. Always verify important academic decisions with your institution.</p>
+
+    </main>
+  </div>
+
+  <script src="js/chat.js"></script>
+</body>
+</html>
