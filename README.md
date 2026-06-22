@@ -1,18 +1,18 @@
 # AcademiQ — Academic Advisor Chatbot
 
-A clean, fully client-side academic advisor chatbot powered by the Anthropic Claude API.
+A clean, fully client-side academic advisor.
 
 ## Features
 
-- 💬 Real-time chat powered by Claude AI
-- 📚 6 specialized topic modes (Study, Exams, Career, Writing, Stress, General)
-- 💡 Quick suggestion cards and chips for common questions
-- 📱 Responsive design (mobile-friendly)
-- 🎨 Clean purple-accented UI with sidebar navigation
+- Real-time chat
+- 6 specialized topic modes (Study, Exams, Career, Writing, Stress, General)
+- Quick suggestion cards and chips for common questions
+- Responsive design (mobile-friendly)
+- Clean purple-accented UI with sidebar navigation
 
 ## Project Structure
 
-```
+
 academiq/
 ├── index.html        ← Main app page
 ├── css/
@@ -20,7 +20,7 @@ academiq/
 ├── js/
 │   └── chat.js       ← Chat logic & API calls
 └── README.md
-```
+
 
 ## Setup
 
@@ -32,7 +32,7 @@ academiq/
 
 Open `js/chat.js` and find the top of the file. The app calls the Anthropic API directly from the browser.
 
-> ⚠️ **Important:** For production use, never expose your API key in client-side code. Instead, proxy requests through your own backend server. For local/demo use, you can set the key in a backend proxy.
+>  **Important:** For production use, never expose your API key in client-side code. Instead, proxy requests through your own backend server. For local/demo use, you can set the key in a backend proxy.
 
 ### 3. Set up a simple backend proxy (recommended)
 
@@ -104,5 +104,3 @@ Then visit `http://localhost:8080`
 - Tabler Icons (CDN)
 
 ---
-
-Built with ❤️ using Claude AI
