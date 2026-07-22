@@ -1,0 +1,27 @@
+================================================================================
+GRADING AND GPA POLICIES
+================================================================================
+
+1. GPA CALCULATION METHOD (How to calculate GPA)
+The Grade Point Average (GPA) is calculated by dividing the total number of grade points earned by the total number of credit hours attempted. Grade points are assigned as follows:
+- A  = 4.0 points per credit hour
+- B  = 3.0 points per credit hour
+- C  = 2.0 points per credit hour
+- D  = 1.0 points per credit hour
+- F  = 0.0 points per credit hour
+Pass/Fail (P/F) courses and withdrawn courses (W) do not impact the GPA calculation.
+
+2. ACADEMIC PROBATION
+Students must maintain a cumulative GPA of 2.0 or higher.
+- Academic Warning: Triggered if a student's GPA falls below 2.0 in a single semester.
+- Academic Probation: If a student's cumulative GPA falls below 2.0, they are placed on Academic Probation. They must meet with an advisor to set up an Academic Success Plan and are limited to a maximum of 12 credits per semester.
+- Academic Suspension: If a student on probation fails to raise their cumulative GPA to 2.0 or achieve a term GPA of 2.5 in the subsequent semester, they face suspension.
+
+3. REPEATING COURSES AND GRADE FORGIVENESS
+Students can repeat a course in which they received a grade of D or F. Under the Grade Forgiveness Policy:
+- A student may repeat up to three (3) courses to replace the original grades.
+- The new grade, whether higher or lower, will be used to calculate the cumulative GPA.
+- The original grade remains on the transcript but is excluded from the GPA calculation.
+
+4. DEAN'S LIST REQUIREMENTS
+Full-time students (attempting 12 or more graded credits) who achieve a semester GPA of 3.50 or higher with no grades of F or Incomplete are placed on the Dean's List.

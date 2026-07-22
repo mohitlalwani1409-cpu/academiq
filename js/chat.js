@@ -1,7 +1,7 @@
 // ── AcademiQ Chat Logic ──
 
-const API_URL = "https://api.anthropic.com/v1/messages";
-const MODEL   = "claude-sonnet-4-6";
+const API_URL = "/api/chat";  // proxied through server.js
+const MODEL   = "claude-3-5-sonnet-latest";
 
 // ── System prompts per topic ──
 const SYSTEM_PROMPTS = {
@@ -88,7 +88,7 @@ function newChat() {
 }
 
 // ── Add message bubble ──
-function addMessage(role, text) {
+function addMessage(role, text, sources = []) {
   // Hide welcome block on first real message
   const welcome = messagesEl.querySelector(".welcome-block");
   if (welcome) welcome.remove();
@@ -106,7 +106,27 @@ function addMessage(role, text) {
 
   const bubble = document.createElement("div");
   bubble.className = "bubble";
-  bubble.textContent = text;
+  
+  // Create text container to support text wrapping separate from sources
+  const textEl = document.createElement("span");
+  textEl.textContent = text;
+  bubble.appendChild(textEl);
+
+  // Add source badges if present
+  if (sources && sources.length > 0) {
+    const sourcesDiv = document.createElement("div");
+    sourcesDiv.className = "msg-sources";
+    sources.forEach(src => {
+      const badge = document.createElement("span");
+      badge.className = "source-badge";
+      const srcName = src.replace(/_/g, " ").replace(".txt", "");
+      const formattedName = srcName.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+      badge.innerHTML = `<i class="ti ti-search"></i> Source: ${formattedName}`;
+      sourcesDiv.appendChild(badge);
+    });
+    bubble.appendChild(sourcesDiv);
+  }
+
   wrap.appendChild(bubble);
 
   messagesEl.appendChild(wrap);
@@ -175,12 +195,12 @@ async function handleSend() {
       || "I'm sorry, I couldn't generate a response. Please try again.";
 
     removeTyping();
-    addMessage("bot", reply);
+    addMessage("bot", reply, data.sources);
     conversationHistory.push({ role: "assistant", content: reply });
 
   } catch (err) {
     removeTyping();
-    addMessage("bot", `Something went wrong: ${err.message}. Please check your API key in js/config.js and try again.`);
+    addMessage("bot", `Something went wrong: ${err.message}. Please check your API key in server.js or server.py, ensure your server is running, and try again.`);
     console.error("AcademiQ error:", err);
   }
 

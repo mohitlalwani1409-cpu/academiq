@@ -451,6 +451,34 @@ body {
 .messages::-webkit-scrollbar-track { background: transparent; }
 .messages::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
 
+
+/* ── RAG Sources ── */
+.msg-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--border);
+  font-size: 11px;
+}
+
+.source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--purple-50);
+  color: var(--purple-800);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  border: 0.5px solid var(--purple-200);
+}
+
+.source-badge i {
+  font-size: 12px;
+}
+
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .sidebar { display: none; }
