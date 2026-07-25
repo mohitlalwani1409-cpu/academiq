@@ -1,0 +1,5 @@
+psycopg2-binary
+pgvector
+PyPDF2
+beautifulsoup4
+lxml
