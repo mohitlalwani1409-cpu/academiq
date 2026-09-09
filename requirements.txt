@@ -3,3 +3,8 @@ pgvector
 PyPDF2
 beautifulsoup4
 lxml
+redis
+bcrypt
+
+python-dotenv  
+deepeval == 4.2.0

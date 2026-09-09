@@ -103,10 +103,29 @@
         </div>
 
         <div class="header-right">
-          <!-- Model Badge -->
-          <div class="model-badge">
-            <i class="ti ti-cpu"></i>
-            <span>llama3.2:3b</span>
+          <!-- Admin Dashboard Trigger (Role Gated) -->
+          <button class="btn-header-action btn-admin-dash" id="btn-admin-dash" onclick="openAdminModal()" style="display:none;" title="Institutional RAG Analytics">
+            <i class="ti ti-chart-bar"></i>
+            <span>Admin Stats</span>
+          </button>
+
+          <!-- User Profile & Auth Badge -->
+          <div id="user-profile-wrapper" class="user-profile-badge" style="display:none;">
+            <i class="ti ti-user-circle"></i>
+            <span id="header-username">User</span>
+            <span id="header-role-tag" class="role-tag-user">User</span>
+            <button class="btn-header-action" onclick="handleLogout()" title="Log out" style="padding:2px 6px; border:none; background:transparent;">
+              <i class="ti ti-logout"></i>
+            </button>
+          </div>
+
+          <!-- Model Selector -->
+          <div class="model-selector" id="model-selector-wrapper">
+            <i class="ti ti-cpu model-selector-icon"></i>
+            <select id="model-select" onchange="onModelChange()">
+              <option value="ollama/llama3.2:3b">llama3.2:3b</option>
+            </select>
+            <i class="ti ti-chevron-down model-selector-chevron"></i>
           </div>
 
           <!-- AI & DB Status Badge -->
@@ -201,6 +220,36 @@
     </main>
   </div>
 
+  <!-- Auth Modal (Login / Signup) -->
+  <div class="auth-overlay" id="auth-modal" style="display:none;">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-brand-logo"><i class="ti ti-brain"></i></div>
+        <h2 class="auth-title">Welcome to AcademiQ</h2>
+        <p class="auth-subtitle">Log in or create an account to access institutional intelligence</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tab-btn-login" onclick="switchAuthTab('login')">Log In</button>
+        <button class="auth-tab-btn" id="tab-btn-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+      </div>
+
+      <div class="auth-error-msg" id="auth-error"></div>
+
+      <form class="auth-form" id="auth-form" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="auth-username">Username</label>
+          <input class="form-input" type="text" id="auth-username" required autocomplete="username" placeholder="e.g. alex_student" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="auth-password">Password</label>
+          <input class="form-input" type="password" id="auth-password" required autocomplete="current-password" placeholder="••••••••" />
+        </div>
+        <button class="btn-auth-submit" id="auth-submit-btn" type="submit">Log In</button>
+      </form>
+    </div>
+  </div>
+
   <!-- Unified Knowledge Base & Document Manager Modal -->
   <div class="modal-overlay" id="kb-modal" onclick="closeKbModalOnOverlay(event)">
     <div class="modal-window">
@@ -232,6 +281,19 @@
           </div>
         </div>
 
+        <!-- Groups Scope Selection Bar -->
+        <div class="group-select-bar">
+          <span style="font-size:12px; font-weight:600; color:var(--text-secondary); white-space:nowrap;">
+            <i class="ti ti-users"></i> Target Scope:
+          </span>
+          <select id="upload-group-select" class="group-select-dropdown">
+            <option value="">Private (Visible only to me)</option>
+          </select>
+          <button class="btn-header-action" type="button" onclick="promptCreateGroup()" title="Create New Group">
+            <i class="ti ti-plus"></i> New Group
+          </button>
+        </div>
+
         <!-- Single Upload Dropzone -->
         <div class="upload-zone" id="dropzone" onclick="document.getElementById('file-upload-input').click()">
           <div class="upload-icon-circle"><i class="ti ti-cloud-upload"></i></div>
@@ -261,21 +323,40 @@
     </div>
   </div>
 
-  <!-- RAG Context Inspector Modal -->
+  <!-- Admin Analytics Dashboard Modal -->
+  <div class="modal-overlay" id="admin-stats-modal" onclick="closeAdminModalOnOverlay(event)">
+    <div class="modal-window" style="max-width:850px;">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="modal-icon" style="background:rgba(239,68,68,0.15); color:#F87171;"><i class="ti ti-chart-dots"></i></div>
+          <div>
+            <h2 class="modal-title">Institutional RAG Analytics & Feedback</h2>
+            <p class="modal-subtitle">System performance, user feedback satisfaction, and document grounding</p>
+          </div>
+        </div>
+        <button class="btn-modal-close" onclick="closeAdminModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="admin-stats-body">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- OKF Knowledge Unit Inspector Modal -->
   <div class="modal-overlay" id="rag-inspector-modal" onclick="closeRagInspectorOnOverlay(event)">
     <div class="modal-window inspector-window">
       <div class="modal-header">
         <div class="modal-title-group">
-          <div class="modal-icon inspector-icon"><i class="ti ti-microscope"></i></div>
+          <div class="modal-icon inspector-icon"><i class="ti ti-certificate"></i></div>
           <div>
-            <h2 class="modal-title">Retrieved RAG Context Chunks</h2>
-            <p class="modal-subtitle" id="inspector-subtitle">Matched via cosine similarity in pgvector</p>
+            <h2 class="modal-title">Verified Knowledge Units (OKF)</h2>
+            <p class="modal-subtitle" id="inspector-subtitle">Structured rules, tables, and clauses retrieved via Hybrid RRF + Math Rerank</p>
           </div>
         </div>
         <button class="btn-modal-close" onclick="closeRagInspector()">&times;</button>
       </div>
       <div class="modal-body" id="inspector-body">
-        <!-- Chunks list rendered dynamically -->
+        <!-- OKF units rendered dynamically -->
       </div>
     </div>
   </div>
