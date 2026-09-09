@@ -1,4 +1,4 @@
-﻿# AcademiQ — Institutional AI Knowledge Platform
+# AcademiQ — Institutional AI Knowledge Platform
 
 AcademiQ is an institutional-grade Retrieval-Augmented Generation (RAG) platform powered by the **Open Knowledge Format (OKF)**, **Parallel Hybrid Search** (Vector Cosine Distance + Full-Text BM25/GIN), a **Deterministic Pure Math Reranker**, and **Three-Tier Access Scoping**.
 
@@ -182,7 +182,4 @@ This tests:
 | /api/groups | GET | Lists user's groups |
 | /api/admin/stats | GET | Admin analytics on feedback, document counts, and system metrics |
 
----
 
-## 📄 License
-MIT License. Developed for institutional academic intelligence and verifiable knowledge retrieval.
